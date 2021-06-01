@@ -1,0 +1,16 @@
+@host=http://localhost:4004
+###
+GET {{host}}/foo/Foo
+Accept: application/json
+
+###
+POST {{host}}/foo/getWeather
+Content-Type: application/json
+
+{ "location": "München"}
+
+###
+@apiKey=5d2fbbcf30649d9853bd8e68385edd2a
+@cityName=München
+###
+GET https://api.openweathermap.org/data/2.5/weather?q={{cityName}}&appid={{apiKey}}&units=metric
