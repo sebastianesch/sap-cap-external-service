@@ -10,6 +10,12 @@ Content-Type: application/json
 { "location": "München"}
 
 ###
+POST {{host}}/getWeather
+Content-Type: application/json
+
+{"location": "München"}
+
+###
 @apiKey=5d2fbbcf30649d9853bd8e68385edd2a
 @cityName=München
 ###
