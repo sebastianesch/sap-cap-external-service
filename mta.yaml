@@ -8,7 +8,7 @@ version: 1.0.0
 description: "A simple CAP project."
 parameters:
   enable-parallel-deployments: true
-   
+
 build-parameters:
   before-all:
    - builder: custom
@@ -26,8 +26,23 @@ modules:
     - name: srv-api      # required by consumers of CAP services (e.g. approuter)
       properties:
         srv-url: ${default-url}
+   requires:
+    - name: cap-example-destination
 
-
-
-
-
+resources:
+- name: cap-example-destination
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: openWeatherApi
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://api.openweathermap.org
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-plan: lite
